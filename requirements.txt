@@ -1,0 +1,30 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+requests==2.31.0
+
+# Deep Learning & ML
+tensorflow==2.14.0
+torch==2.1.1
+transformers==4.35.0
+sentence-transformers==2.3.0
+faiss-cpu==1.7.4
+scikit-learn==1.3.2
+
+# Image & Audio Processing
+opencv-python==4.8.1.78
+librosa==0.10.0
+numpy==1.24.3
+scipy==1.11.4
+soundfile==0.12.1
+
+# RAG & Vector DB
+duckduckgo-search==3.9.11
+
+# Firebase
+firebase-admin==6.2.0
+
+# Utilities
+python-dotenv==1.0.0
+pillow==10.1.0
