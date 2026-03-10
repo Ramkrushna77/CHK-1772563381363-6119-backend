@@ -24,7 +24,37 @@ When a user asks a question:
 The system finds relevant chunks from the database.
 It may also retrieve information from the web.
 
-
+## 🏗️ Architecture Flow
+The system processes user interactions through a multi-step pipeline to provide accurate risk analysis and recommendations.
+```text
+User
+ │
+ │  (Face + Voice + Chat)
+ ▼
+Frontend (React Web App)
+ │
+ ▼
+Backend (FastAPI)
+ │
+ ├── Facial Emotion Detection (Computer Vision / Webcam)
+ ├── Speech Emotion Detection (Audio Processing)
+ ├── Chat Sentiment Analysis (NLP)
+ ├── User Interaction Tracking
+ │
+ ▼
+Emotion Aggregation Engine
+ │
+ ▼
+Mental Health Risk Analyzer
+ │
+ ▼
+AI Report Generator
+ │
+ ▼
+RAG Chatbot (Hybrid RAG Knowledge Base)
+ │
+ ▼
+Recommendations + Guidance
 
 The combined context is given to the language model.
 
