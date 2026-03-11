@@ -1,25 +1,52 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, HTTPException
 from services.speech_service import analyze_speech
 
 router = APIRouter()
 
 
-async def _detect_speech_emotion(file: UploadFile = File(...)):
-    audio_bytes = await file.read()
-
-    result = analyze_speech(audio_bytes)
-
-    return {
-        "emotion": result.get("emotion"),
-        "confidence": result.get("confidence")
-    }
-
-
 @router.post("")
 async def detect_speech_emotion_root(file: UploadFile = File(...)):
-    return await _detect_speech_emotion(file)
+    """Detect speech emotion from uploaded audio file."""
+    try:
+        audio_bytes = await file.read()
+        
+        if not audio_bytes:
+            raise HTTPException(status_code=400, detail="Audio file is empty")
+        
+        result = analyze_speech(audio_bytes)
+        
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        
+        return {
+            "emotion": result.get("emotion"),
+            "confidence": result.get("confidence")
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing audio: {str(e)}")
 
 
 @router.post("/analyze")
 async def detect_speech_emotion(file: UploadFile = File(...)):
-    return await _detect_speech_emotion(file)
+    """Alternative endpoint for speech emotion detection."""
+    try:
+        audio_bytes = await file.read()
+        
+        if not audio_bytes:
+            raise HTTPException(status_code=400, detail="Audio file is empty")
+        
+        result = analyze_speech(audio_bytes)
+        
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        
+        return {
+            "emotion": result.get("emotion"),
+            "confidence": result.get("confidence")
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing audio: {str(e)}")
