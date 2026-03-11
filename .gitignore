@@ -1,12 +1,6 @@
-# Python environment
 .venv/
 .venv-1/
 __pycache__/
-*.pyc
-
-# Data & Databases (Large or sensitive files)
-data/
 vector_db/
-
-# OS files
-.DS_Store
+*.pyc
+.env

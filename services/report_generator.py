@@ -1,4 +1,6 @@
 from services.recommendation_engine import generate_recommendations
+from services.rag_service import analyze_report_with_rag
+import json
 
 
 def generate_report(face_result, speech_result, sentiment_result):
@@ -20,4 +22,10 @@ def generate_report(face_result, speech_result, sentiment_result):
         "recommendations": recommendations
     }
 
-    return report
+    report_text = json.dumps(report, ensure_ascii=True)
+    rag_analysis = analyze_report_with_rag(report_text)
+
+    return {
+        "report": report,
+        "rag_analysis": rag_analysis
+    }
