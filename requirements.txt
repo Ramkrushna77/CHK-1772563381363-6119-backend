@@ -13,7 +13,7 @@ faiss-cpu==1.7.4
 scikit-learn==1.3.2
 
 # Image & Audio Processing
-opencv-python==4.8.1.78
+opencv-python-headless==4.8.1.78
 librosa==0.10.0
 numpy==1.24.3
 scipy==1.11.4
